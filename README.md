@@ -51,8 +51,9 @@ Oversigt over alle projekter
 
 ## Profiler
 
-`dev` (development): H2-database til lokal udvikling og test\
+`dev` (development): lokal MySQL-database til udvikling
 `prod` (produktion): MySQL-database i Azure
+`test`: H2-database til  tests
 
 ## Database
 
