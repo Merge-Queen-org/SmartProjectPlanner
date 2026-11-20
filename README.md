@@ -22,22 +22,22 @@ Celine
 ## Teknologier
 
 Java 25\
-Spring Boot\
-Thymeleaf\
-MySQL\
-H2\
+Spring Boot \
+Thymeleaf \
+MySQL \
+H2 \
 HTML & CSS\
-Maven\
-JUnit & Mockito\
+Maven \
+JUnit 5 & Mockito \
 IntelliJ IDEA 2025\
 GitHub Actions og GitHub Projects\
 Azure (App Service og MySQL)
 
 ## Funktioner
 
-Vis, opret, rediger og slet projekter\
-Vis, opret, rediger og slet delprojekter, opgaver og delopgaver\
-Angiv estimerede timer og start- og slutdatoer\
+Vis, opret rediger og slet projekter\
+Vis, opret rediger og slet delprojekter, opgaver og delopgaver\
+Angiv estimerede timer og start og slutdatoer\
 Beregn samlet tidsforbrug\
 Beregn dagligt timebehov for at nå deadline\
 Oversigt over alle projekter
@@ -46,18 +46,19 @@ Oversigt over alle projekter
 
 1. Klon projektet fra GitHub.
 2. Åbn projektet i IntelliJ.
-3. Kør applikationen. Den starter med `dev`-profilen og en H2-database.
-4. Åbn http://localhost:8080 i din browser.
+3. Kør `schema.sql` og derefter `data.sql` i MySQL Workbench.
+4. Kør applikationen. Den starter med `dev`-profilen og din lokale MySQL-database.
+5. Åbn http://localhost:8080 i din browser.
 
 ## Profiler
 
-`dev` (development): lokal MySQL-database til udvikling
-`prod` (produktion): MySQL-database i Azure
-`test`: H2-database til  tests
+`dev` (development): lokal MySQL-database til udvikling\
+`prod` (produktion): MySQL-database i Azure\
+`test`: H2-database til tests
 
 ## Database
 
-SQL-scripts til oprettelse af databasen og testdata ligger i `src/main/resources`.
+SQL-scripts til oprettelse af databasen og testdata ligger i `src/main/resources/sql`.
 
 ## Projektstyring
 
