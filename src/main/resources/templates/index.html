@@ -1,13 +1,54 @@
 <!DOCTYPE html>
-<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Smart Project Planner</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <h1>Smart Project Planner</h1>
-    <p>Hello Girls 🚀</p>
 
+<header class="topbar">
+    <a th:href="@{/}" class="logo"><span class="dot">S</span> Smart Project Planner</a>
+    <a th:href="@{/projects}">Projects</a>
+</header>
+
+<section class="hero">
+    <div class="hero-text">
+        <p class="small">Project calculation</p>
+
+        <h1>
+            Your projects.<br>
+            Your plan.<br>
+            Your success.
+        </h1>
+        <p class="tagline">All while knowing the real time cost.</p>
+
+
+        <p>
+            Take control of every project with our smart planning tool.
+            Break projects into manageable tasks, estimate hours,
+            calculate costs, and keep everything on track.
+            Make better decisions, avoid surprises, and deliver
+            projects with confidence on time.
+        </p>
+
+        <a th:href="@{/projects}" class="button">See all my projects</a>
+        <a th:href="@{/projects/create}" class="button light">+ Create project</a>
+    </div>
+    <img th:src="@{/images/home.png}" alt="Team planning a project" class="hero-img">
+</section>
+
+<section class="steps">
+    <div class="step"><span class="num">1</span>
+        <h3>Create a project</h3>
+        <p>Give it a name, a start date and a deadline.</p></div>
+    <div class="step"><span class="num">2</span>
+        <h3>Break it down</h3>
+        <p>Add subprojects, tasks and subtasks with hours.</p></div>
+    <div class="step"><span class="num">3</span>
+        <h3>See the total</h3>
+        <p>See the total hours and how many hours are needed per day.</p></div>
+</section>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-# CONTRIBUTING til Smart Project Planner
+ # CONTRIBUTING til Smart Project Planner
 
 Tak fordi du vil bidrage til Smart Project Planner! Her kan du læse, hvordan du kommer i gang med udviklingen.
 
