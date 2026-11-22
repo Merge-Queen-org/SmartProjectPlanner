@@ -1,7 +1,10 @@
 package dk.ek.smartprojectplanner.controller;
 
+import dk.ek.smartprojectplanner.service.ProjectService;
+import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class HomeController {
@@ -9,5 +12,14 @@ public class HomeController {
     @GetMapping("/")
     public String index() {
         return "index";
+    }
+
+    @GetMapping("/projects/{projectId}/subprojects")
+    public String getSubProjects(@PathVariable int projectId, Model model) {
+
+        model.addAttribute("subprojects",
+                ProjectService.getSubProjectsByProjectId(projectId));
+
+        return "subprojects";
     }
 }
