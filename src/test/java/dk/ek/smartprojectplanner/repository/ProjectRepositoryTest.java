@@ -31,6 +31,6 @@ class ProjectRepositoryTest {
         Integer count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM project", Integer.class);
         assertEquals(1, count);
 
-        // kun 1 projekt er tilbage
+        // 1 projekt er tilbage
     }
 }

@@ -25,6 +25,8 @@ class ProjectControllerTest {
 
 
     // falsk service
+
+
     @Test
     void deleteProject_redirectsToFrontPage() throws Exception {
 
