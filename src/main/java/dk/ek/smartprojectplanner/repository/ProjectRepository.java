@@ -2,7 +2,7 @@
 package dk.ek.smartprojectplanner.repository;
 
 import dk.ek.smartprojectplanner.model.Subproject;
-import dk.ek.smartprojectplanner.rowmapper.SubprojectRowMapper;
+import dk.ek.smartprojectplanner.rowMapper.SubprojectRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
