@@ -26,6 +26,10 @@ public class ProjectRepository {
                 projectId
         );
     }
-
+    // User story: Delete project
+    public void deleteProject(int projectId) {
+        String sql = "DELETE FROM project WHERE project_id = ?";
+        jdbcTemplate.update(sql, projectId);
+    }
 
 }
