@@ -1,4 +1,3 @@
-
 package dk.ek.smartprojectplanner.repository;
 
 import dk.ek.smartprojectplanner.model.Subproject;

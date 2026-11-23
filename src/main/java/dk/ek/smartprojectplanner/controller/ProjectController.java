@@ -7,7 +7,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
-public class HomeController {
+public class ProjectController {
+
+    private final ProjectService projectService;
+
+    public ProjectController(ProjectService projectService) { // constructor injection
+        this.projectService = projectService;
+    }
 
     @GetMapping("/")
     public String index() {
@@ -18,7 +24,7 @@ public class HomeController {
     public String getSubProjects(@PathVariable int projectId, Model model) {
 
         model.addAttribute("subprojects",
-                ProjectService.getSubProjectsByProjectId(projectId));
+                projectService.getSubProjectsByProjectId(projectId));
 
         return "subprojects";
     }
