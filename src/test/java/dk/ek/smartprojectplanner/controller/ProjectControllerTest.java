@@ -12,21 +12,28 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(ProjectController.class)    // starter kun controlleren
+// starter kun controlleren
+
+@WebMvcTest(ProjectController.class)
 class ProjectControllerTest {
 
     @Autowired
-    private MockMvc mockMvc;            // falsk browser
+    private MockMvc mockMvc;
 
     @MockitoBean
-    private ProjectService projectService;   // falsk service
+    private ProjectService projectService;
 
+
+    // falsk service
     @Test
     void deleteProject_redirectsToFrontPage() throws Exception {
-        mockMvc.perform(post("/projects/1/delete"))     // tryk på slet
-                .andExpect(status().is3xxRedirection()) // bliver sendt videre
-                .andExpect(redirectedUrl("/"));         // til forsiden
 
-        verify(projectService).deleteProject(1);        // tjek at service blev kaldt
+        // tryk på slet bliver sendt videre til forsiden tjekker om servicen er blevet kaldt
+
+        mockMvc.perform(post("/projects/1/delete"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/"));
+
+        verify(projectService).deleteProject(1);
     }
 }
