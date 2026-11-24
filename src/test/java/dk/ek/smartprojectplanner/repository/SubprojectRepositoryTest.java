@@ -22,12 +22,15 @@ public class SubprojectRepositoryTest {
 
     @Test
     void saveNewSubproject_addSubproject(){
-        Subproject subproject = new Subproject(0,2,"Backend", "API");
+        Subproject subproject = new Subproject(0,1,"Backend", "API");
+        Subproject subproject1 = new Subproject(3,1,"Backend", "Testing");
 
         subprojectRepository.saveNewSubproject(subproject);
+        subprojectRepository.saveNewSubproject(subproject1);
 
         Integer numberOfSubprojects = jdbcTemplate.queryForObject(
-                "SELECT COUNT(*) FROM subproject",Integer.class);
-        assertEquals(1,numberOfSubprojects);
+                "SELECT COUNT(*) FROM subproject WHERE project_id = 1",Integer.class);
+
+        assertEquals(4,numberOfSubprojects);
     }
 }
