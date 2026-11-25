@@ -11,6 +11,9 @@ public class Project {
     private LocalDate projectStartDate;
     private LocalDate projectDeadline;
 
+    public Project() {
+    }
+
     public Project(int projectId, int officeId, String projectName,
                    String projectDescription, LocalDate projectStartDate, LocalDate projectDeadline){
         this.projectId = projectId;

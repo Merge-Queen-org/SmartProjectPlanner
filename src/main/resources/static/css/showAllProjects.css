@@ -1,0 +1,14 @@
+.project-heading {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.project-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: #f5f7fa;
+    padding: 16px;
+    border-radius: 10px;
+    margin-top: 18px;
+}
