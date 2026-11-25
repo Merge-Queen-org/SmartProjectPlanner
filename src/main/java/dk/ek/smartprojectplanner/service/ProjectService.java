@@ -1,5 +1,7 @@
 package dk.ek.smartprojectplanner.service;
 
+import dk.ek.smartprojectplanner.model.Project;
+import dk.ek.smartprojectplanner.model.ProjectSummary;
 import dk.ek.smartprojectplanner.model.Subproject;
 import dk.ek.smartprojectplanner.repository.ProjectRepository;
 import org.springframework.stereotype.Service;
@@ -20,5 +22,21 @@ public class ProjectService {
 
     public void deleteProject(int projectId) {
         projectRepository.deleteProject(projectId);
+    }
+
+
+    public Project getProjectById(int projectId) {
+        return projectRepository.findProjectsByProjectId(projectId);
+    }
+
+    public void editProject(int projectId, Project project) {
+        projectRepository.editProject(projectId, project);
+    }
+
+    public List<ProjectSummary> getAllProjectSummaries() {
+        List<Project> projects = projectRepository.findAllProjects();
+
+
+        return null;
     }
 }

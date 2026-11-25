@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Project</title>
+</head>
+<body>
+
+<h1>Edit Project</h1>
+
+<form th:action="@{/projects/edit/{id}(id=${project.projectId})}"
+      th:object="${project}"
+      method="post">
+
+  <label>Project name</label>
+  <input type="text" th:field="*{projectName}" required>
+
+  <label>Description</label>
+  <textarea th:field="*{projectDescription}"></textarea>
+
+  <label>Start date</label>
+  <input type="date" th:field="*{projectStartDate}" required>
+
+  <label>Deadline</label>
+  <input type="date" th:field="*{projectDeadline}" required>
+
+  <label>Office ID</label>
+  <input type="number" th:field="*{officeId}" required>
+
+  <button type="submit">Save changes</button>
+
+</form>
+
+<a th:href="@{/projects}">Cancel</a>
+
+</body>
+</html>
