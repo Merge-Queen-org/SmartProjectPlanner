@@ -1,9 +1,17 @@
 package dk.ek.smartprojectplanner.model;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class Subproject {
     private int subprojectId;
     private int projectId;
+
+    @NotBlank(message = "Name must not be blank")
+    @Size(max = 100)
     private String subprojectName;
+
+    @Size(max = 1000)
     private String subprojectDescription;
 
     public Subproject(int subprojectId, int projectId, String subprojectName, String subprojectDescription){

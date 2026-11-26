@@ -39,3 +39,5 @@ VALUES (1, 1, 'Website redesign', 'New website', '2027-02-01', '2027-03-15'),
 INSERT INTO subproject (subproject_id, project_id, subproject_name, subproject_description)
 VALUES (1, 1, 'Design', 'Wireframes'),
        (2, 1, 'Frontend', 'HTML and CSS');
+
+ALTER TABLE subproject ALTER COLUMN subproject_id RESTART WITH 100;

@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <title>Smart Project Planner</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+
 </head>
 <body>
 
-<header class="topbar">
-    <a th:href="@{/}" class="logo"><span class="dot">S</span> Smart Project Planner</a>
-    <a th:href="@{/projects}">Projects</a>
-</header>
+<header th:replace="~{fragments :: header}"></header>
 
 <section class="hero">
     <div class="hero-text">
@@ -49,6 +47,7 @@
         <h3>See the total</h3>
         <p>See the total hours and how many hours are needed per day.</p></div>
 </section>
+<footer th:replace="~{fragments :: footer}"></footer>
 
 </body>
 </html>
