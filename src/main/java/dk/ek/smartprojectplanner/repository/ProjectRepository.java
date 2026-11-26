@@ -107,7 +107,6 @@ public class ProjectRepository {
         jdbcTemplate.update(sql, projectId);
     }
 
-    // User story: Edit project
     // Find one project by ID
     public Project findProjectsByProjectId(int projectId) {
 
@@ -131,30 +130,25 @@ public class ProjectRepository {
 
         return projects.isEmpty() ? null : projects.get(0);
     }
-    // Update an existing project
+    // User story: edit project
     public void editProject(int projectId, Project project) {
 
         String sql = """
         UPDATE project
-        SET office_id = ?,
-            project_name = ?,
+        SET project_name = ?,
             project_description = ?,
-            project_start_date = ?,
             project_deadline = ?
         WHERE project_id = ?
         """;
 
         jdbcTemplate.update(
                 sql,
-                project.getOfficeId(),
                 project.getProjectName(),
                 project.getProjectDescription(),
-                project.getProjectStartDate(),
                 project.getProjectDeadline(),
                 projectId
         );
     }
-
 
 
 
