@@ -1,37 +1,84 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8">
-  <title>Edit Project</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Edit Project - Smart Project Planner</title>
+
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <link rel="stylesheet" th:href="@{/css/editProject.css}">
 </head>
+
 <body>
 
-<h1>Edit Project</h1>
+<header class="topbar">
 
-<form th:action="@{/projects/edit/{id}(id=${project.projectId})}"
-      th:object="${project}"
-      method="post">
+  <a href="/" class="logo">
+    <span class="dot">☰</span>
+    Smart Project Planner
+  </a>
 
-  <label>Project name</label>
-  <input type="text" th:field="*{projectName}" required>
+  <a href="/projects">Projects</a>
+  <a href="/">Home</a>
 
-  <label>Description</label>
-  <textarea th:field="*{projectDescription}"></textarea>
+</header>
 
-  <label>Start date</label>
-  <input type="date" th:field="*{projectStartDate}" required>
+<main class="edit-container">
 
-  <label>Deadline</label>
-  <input type="date" th:field="*{projectDeadline}" required>
+  <div class="edit-header">
+    <h1>Edit Project</h1>
+    <p>Update your project information below.</p>
+  </div>
 
-  <label>Office ID</label>
-  <input type="number" th:field="*{officeId}" required>
+  <section class="edit-card">
 
-  <button type="submit">Save changes</button>
+    <form th:action="@{/projects/edit/{id}(id=${project.projectId})}"
+          th:object="${project}"
+          method="post">
 
-</form>
+      <div class="form-group">
+        <label for="projectName">Project name</label>
+        <input type="text"
+               id="projectName"
+               th:field="*{projectName}"
+               required>
+      </div>
 
-<a th:href="@{/projects}">Cancel</a>
+      <div class="form-group">
+        <label for="projectDescription">Description</label>
+        <textarea id="projectDescription"
+                  th:field="*{projectDescription}"
+                  rows="4"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="projectDeadline">Deadline</label>
+        <input type="date"
+               id="projectDeadline"
+               th:field="*{projectDeadline}"
+               required>
+      </div>
+
+      <div class="form-actions">
+
+        <a th:href="@{/projects}" class="cancel-button">
+          Cancel
+        </a>
+
+        <button type="submit" class="save-button">
+          Save changes
+        </button>
+
+      </div>
+
+    </form>
+
+  </section>
+
+</main>
 
 </body>
 </html>
