@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 // starter kun controlleren
 
-@WebMvcTest(ProjectController.class)
+@WebMvcTest(SmartProjectPlannerController.class)
 class ProjectControllerTest {
 
     @Autowired
