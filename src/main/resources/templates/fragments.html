@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Smart Project Planner</title>
-    <link rel="stylesheet" th:href="@{/css/fragments.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
 <header th:fragment="header" class="topbar">
     <a th:href="@{/}" class="logo"><span class="dot">S</span> Smart Project Planner</a>
-    <a th:href="@{/}">Home</a>
-    <a th:href="@{/seeAllProjects}">Projects</a>
     <a th:href="@{/overview}">Overview</a>
+    <a th:href="@{/seeAllProjects}">Projects</a>
+    <a th:href="@{/}">Home</a>
 </header>
 
 <footer th:fragment="footer" class="footer">
