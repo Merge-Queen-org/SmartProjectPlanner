@@ -56,13 +56,13 @@ public class SmartProjectPlannerController {
                                     @RequestParam(required = false)String subprojectDescription){
         Subproject subproject = new Subproject(0, projectId, subprojectName, subprojectDescription);
         subProjectService.saveNewSubproject(projectId, subproject);
-        return "redirect:/projects/";
+        return "redirect:/projects/" + projectId + "/createSubproject";
     }
 
     // User story: Delete project
     @PostMapping("/projects/{projectId}/delete")
     public String deleteProject(@PathVariable int projectId) {
         projectService.deleteProject(projectId);
-        return "redirect:/";
+        return "redirect:/project/";
     }
 }
