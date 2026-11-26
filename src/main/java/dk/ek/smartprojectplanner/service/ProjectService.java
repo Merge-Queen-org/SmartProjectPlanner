@@ -34,9 +34,6 @@ public class ProjectService {
     }
 
     public List<ProjectSummary> getAllProjectSummaries() {
-        List<Project> projects = projectRepository.findAllProjects();
-
-
-        return null;
+        return projectRepository.findAllProjectSummaries();
     }
 }
