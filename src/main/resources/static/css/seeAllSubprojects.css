@@ -1,0 +1,115 @@
+
+.subprojects-page {
+    max-width: 1200px;
+    width: 90%;
+    margin: 40px auto;
+}
+
+.subprojects-page h1 {
+    font-size: 32px;
+    color: #111827;
+    margin-bottom: 10px;
+}
+
+.page-description {
+    color: #64748b;
+    margin-bottom: 35px;
+}
+
+.subproject-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.subproject-card {
+    background: white;
+    border: 1px solid #e5eaf1;
+    border-radius: 14px;
+    padding: 26px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+}
+
+.subproject-card h2 {
+    color: #203342;
+    font-size: 21px;
+    margin: 0 0 12px;
+}
+
+.subproject-description {
+    color: #64748b;
+    font-size: 14px;
+    min-height: 40px;
+    line-height: 1.5;
+}
+
+.subproject-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    background: #f3f6fa;
+    border-radius: 10px;
+    padding: 16px;
+    margin-top: 25px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info-item span {
+    color: #64748b;
+    font-size: 13px;
+}
+
+.info-item strong {
+    color: #203342;
+    font-size: 14px;
+}
+
+.status-badge,
+.priority-badge {
+    background: white;
+    border-radius: 6px;
+    padding: 6px 9px;
+    width: fit-content;
+}
+
+.subproject-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 22px;
+}
+
+.add-task-button {
+    background: #1d4ed8;
+    color: white;
+    border: none;
+    padding: 11px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.add-task-button:hover {
+    background: #1e40af;
+}
+
+.empty-message {
+    color: #64748b;
+    margin-top: 25px;
+}
+
+@media (max-width: 600px) {
+    .subprojects-page {
+        width: 92%;
+        margin: 25px auto;
+    }
+
+    .subproject-grid {
+        grid-template-columns: 1fr;
+    }
+}

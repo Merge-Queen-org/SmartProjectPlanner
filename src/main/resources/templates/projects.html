@@ -116,8 +116,13 @@
             </div>
 
 
-            <!-- Edit and Delete buttons -->
+            <!-- Edit , See Subprojects and Delete buttons -->
             <div class="project-actions">
+                <!-- See subprojects -->
+                <form th:action="@{/projects/{projectId}/subprojects(projectId=${summary.project.projectId})}"
+                      method="get">
+                    <button type="submit">See subprojects</button>
+                </form>
 
                 <!-- Edit button -->
                 <form th:action="@{/projects/edit/{id}(id=${summary.project.projectId})}"

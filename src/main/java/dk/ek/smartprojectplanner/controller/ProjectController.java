@@ -42,7 +42,12 @@ public class ProjectController {
         model.addAttribute("subprojects",
                 projectService.getSubProjectsByProjectId(projectId));
 
-        return "subprojects";
+        model.addAttribute("projectId", projectId);
+
+        model.addAttribute("project",
+                projectService.getProjectById(projectId));
+
+        return "seeAllSubprojects";
     }
     // User story: Delete project
     @PostMapping("/projects/{projectId}/delete")
