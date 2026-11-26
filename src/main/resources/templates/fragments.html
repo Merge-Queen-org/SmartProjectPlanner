@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Project Planner</title>
+    <link rel="stylesheet" th:href="@{/css/fragments.css}">
+</head>
+<body>
+
+<header th:fragment="header" class="topbar">
+    <a th:href="@{/}" class="logo"><span class="dot">S</span> Smart Project Planner</a>
+    <a th:href="@{/}">Home</a>
+    <a th:href="@{/seeAllProjects}">Projects</a>
+    <a th:href="@{/overview}">Overview</a>
+</header>
+
+<footer th:fragment="footer" class="footer">
+    <div class="container footer-inner">
+        <p class="footer-copy">Copyrights &copy; 2026 by Smart Project Planner</p>
+    </div>
+</footer>
+</body>
+</html>
