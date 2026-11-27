@@ -1,5 +1,6 @@
 package dk.ek.smartprojectplanner.repository;
 
+import dk.ek.smartprojectplanner.model.Subtask;
 import dk.ek.smartprojectplanner.model.Task;
 import dk.ek.smartprojectplanner.rowMapper.TaskRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -39,5 +40,10 @@ public class TaskRepository {
                 "task_start_date = ?, task_due_date = ? WHERE task_id = ?";
         jdbcTemplate.update(sql, task.getTaskName(), task.getTaskDescription(), task.getTaskEstimatedHours(),
                 task.getTaskStartDate(), task.getTaskDueDate(), task.getTaskId());
+    }
+    // gemmer en ny subtask under en task
+    public void createSubtask(Subtask subtask) {
+        String sql = "INSERT INTO subtask (task_id, subtask_name) VALUES (?, ?)";
+        jdbcTemplate.update(sql, subtask.getTaskId(), subtask.getSubtaskName());
     }
 }

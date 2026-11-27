@@ -1,5 +1,6 @@
 package dk.ek.smartprojectplanner.controller;
 
+import dk.ek.smartprojectplanner.model.Subtask;
 import dk.ek.smartprojectplanner.model.Task;
 import dk.ek.smartprojectplanner.service.TaskService;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -54,6 +55,7 @@ public class TaskController {
                            @RequestParam(required = false) String description, @RequestParam int hours,
                            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
                            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dueDate) {
+
         // henter den gamle task
 
         Task task = taskService.findTaskById(taskId);
@@ -67,5 +69,14 @@ public class TaskController {
         // gemmer den nye ændring
         taskService.updateTask(task);
         return "redirect:/";
+    }
+
+    // gemmer en ny subtask og går tilbage til edit-siden
+    @PostMapping("/tasks/{taskId}/subtasks/create")
+    public String createSubtask(@PathVariable int taskId, @RequestParam String subtaskName) {
+        Subtask subtask = new Subtask(0, taskId, subtaskName, false);
+        // ny subtask, ikke færdig
+        taskService.createSubtask(subtask);
+        return "redirect:/tasks/" + taskId + "/edit";
     }
 }

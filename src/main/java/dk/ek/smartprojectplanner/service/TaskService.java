@@ -1,5 +1,6 @@
 package dk.ek.smartprojectplanner.service;
 
+import dk.ek.smartprojectplanner.model.Subtask;
 import dk.ek.smartprojectplanner.model.Task;
 import dk.ek.smartprojectplanner.repository.TaskRepository;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,10 @@ public class TaskService {
     // gemmer ændringer
     public void updateTask(Task task) {
         taskRepository.updateTask(task);
+    }
+
+    // gemmer en ny subtask
+    public void createSubtask(Subtask subtask) {
+        taskRepository.createSubtask(subtask);
     }
 }

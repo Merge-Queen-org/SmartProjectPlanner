@@ -34,6 +34,13 @@
 
         <button class="button">Save changes</button>
     </form>
+
+    <!-- ny subtask -->
+    <h3>Add subtask</h3>
+    <form th:action="@{/tasks/{id}/subtasks/create(id=${task.taskId})}" method="post">
+        <input name="subtaskName" placeholder="e.g. Make mobile version" required>
+        <button class="button">Add subtask</button>
+    </form>
 </main>
 
 </body>
