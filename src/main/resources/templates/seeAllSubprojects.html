@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Subprojects - Smart Project Planner</title>
+
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <link rel="stylesheet" th:href="@{/css/showAllProjects.css}">
+  <link rel="stylesheet" th:href="@{/css/seeAllSubprojects.css}">
+</head>
+
+<body>
+
+<!-- Header -->
+<div th:replace="~{fragments :: header}"></div>
+
+<main class="subprojects-page">
+
+  <!-- Project name -->
+  <h1 th:text="'Subprojects for ' + ${project.projectName}">
+    Subprojects
+  </h1>
+
+  <p class="page-description">
+    Manage the subprojects belonging to this project.
+  </p>
+
+  <!-- Add Task button -->
+  <div class="subproject-actions">
+    <button type="button" class="button create-button">
+      + Add Task
+    </button>
+  </div>
+
+  <!-- No subprojects message -->
+  <p class="empty-message"
+     th:if="${#lists.isEmpty(subprojects)}">
+    No subprojects yet.
+  </p>
+
+  <!-- Subproject cards -->
+  <div class="subproject-grid">
+
+    <div class="subproject-card"
+         th:each="subproject : ${subprojects}">
+
+      <h2 th:text="${subproject.subprojectName}">
+        Subproject name
+      </h2>
+
+      <p class="subproject-description"
+         th:text="${subproject.subprojectDescription}">
+        Subproject description
+      </p>
+
+      <!-- Status and Priority -->
+      <div class="subproject-info">
+
+        <div class="info-item">
+          <span>Status</span>
+          <strong class="status-badge">Not set</strong>
+        </div>
+
+        <div class="info-item">
+          <span>Priority</span>
+          <strong class="priority-badge">Not set</strong>
+        </div>
+
+      </div>
+
+      <!-- Subproject actions -->
+      <div class="project-actions">
+
+        <form>
+          <button type="button">See Tasks</button>
+        </form>
+
+        <form>
+          <button type="button">Edit</button>
+        </form>
+
+        <form>
+          <button type="button">Delete</button>
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
+
+<!-- Footer -->
+<div th:replace="~{fragments :: footer}"></div>
+
+</body>
+</html>

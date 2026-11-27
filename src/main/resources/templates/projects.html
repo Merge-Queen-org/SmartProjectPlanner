@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Projects - Smart Project Planner</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/showAllProjects.css}">
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<header class="topbar">
+
+    <a href="/" class="logo">
+        <span class="dot">☰</span>
+        Smart Project Planner
+    </a>
+
+    <a href="/projects">Projects</a>
+    <a href="/">Home</a>
+
+</header>
+
+
+<!-- Main content -->
+<main class="projects-container">
+
+    <!-- Page heading -->
+    <div class="projects-header">
+
+        <div>
+            <h1>My projects</h1>
+
+            <p>
+                Alpha Solutions -
+                <span th:text="${#lists.size(projects)}">4</span>
+                projects
+            </p>
+        </div>
+
+        <a href="/projects/create" class="button create-button">
+            + Create project
+        </a>
+
+    </div>
+
+
+    <!-- Project cards -->
+    <section class="project-grid">
+
+        <article class="project-card"
+                 th:each="summary : ${projects}">
+
+            <!-- Project name -->
+            <div class="project-heading">
+
+                <h2 th:text="${summary.project.projectName}">
+                    Website redesign
+                </h2>
+
+            </div>
+
+
+            <!-- Project description -->
+            <p class="project-description"
+               th:text="${summary.project.projectDescription}">
+                New responsive website for Alpha Solutions.
+            </p>
+
+
+            <!-- Project information -->
+            <div class="project-info">
+
+                <!-- Deadline -->
+                <div>
+
+                    <span>Deadline</span>
+
+                    <strong th:text="${#temporals.format(summary.project.projectDeadline, 'dd MMM')}">
+                        15 Mar
+                    </strong>
+
+                </div>
+
+
+                <!-- Total estimated hours -->
+                <div>
+
+                    <span>Total</span>
+
+                    <strong th:text="${summary.totalHours + ' h'}">
+                        180 h
+                    </strong>
+
+                </div>
+
+
+                <!-- Number of tasks -->
+                <div>
+
+                    <span>Tasks</span>
+
+                    <strong th:text="${summary.taskCount}">
+                        14
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- Edit , See Subprojects and Delete buttons -->
+            <div class="project-actions">
+                <!-- See subprojects -->
+                <form th:action="@{/projects/{projectId}/subprojects(projectId=${summary.project.projectId})}"
+                      method="get">
+                    <button type="submit">See subprojects</button>
+                </form>
+
+                <!-- Edit button -->
+                <form th:action="@{/projects/edit/{id}(id=${summary.project.projectId})}"
+                      method="get">
+                    <button type="submit">Edit</button>
+                </form>
+
+                <!-- Delete button -->
+                <form th:action="@{/projects/{projectId}/delete(projectId=${summary.project.projectId})}"
+                      method="post">
+                    <button type="submit">Delete</button>
+                </form>
+
+            </div>
+
+        </article>
+
+    </section>
+
+
+    <!-- Message if there are no projects -->
+    <div th:if="${#lists.isEmpty(projects)}">
+
+        <p>No projects found.</p>
+
+    </div>
+
+</main>
+
+</body>
+</html>
