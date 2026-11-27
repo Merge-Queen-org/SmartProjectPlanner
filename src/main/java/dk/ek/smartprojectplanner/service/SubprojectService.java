@@ -31,7 +31,7 @@ public class SubprojectService {
         if (subproject.getSubprojectName() == null || subproject.getSubprojectName().isBlank()){
             throw  new IllegalArgumentException("Name must not be blank");
         }
-        if (subproject.getSubprojectName().length() >100){
+        if (subproject.getSubprojectName().length() > 100){
             throw new IllegalArgumentException("Name must be at most 100 characters");
         }
         if (subproject.getSubprojectDescription() != null && subproject.getSubprojectDescription().length()>1000){

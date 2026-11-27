@@ -25,29 +25,29 @@ public class SubprojectServiceTest {
     private SubprojectService subprojectService;
 
     @Test
-    void saveNewSubproject_setsProjectIdAndSavesSubproject(){
-        Subproject subproject = new Subproject(1,2,"Design","Prototyping");
+    void saveNewSubproject_setsProjectIdAndSavesSubproject() {
+        Subproject subproject = new Subproject(1, 2, "Design", "Prototyping");
 
         subprojectService.saveNewSubproject(1, subproject);
 
-        assertEquals(1,subproject.getProjectId());
+        assertEquals(1, subproject.getProjectId());
         verify(subprojectRepository).saveNewSubproject(subproject);
     }
 
     @Test
-    void getSubprojects_returnSubproject(){
-        Subproject subproject = new Subproject(1,2,"Design","Prototyping");
+    void getSubprojects_returnSubproject() {
+        Subproject subproject = new Subproject(1, 2, "Design", "Prototyping");
         List<Subproject> subprojects = List.of(subproject);
         when(projectService.getSubProjectsByProjectId(2)).thenReturn(subprojects);
 
         List<Subproject> result = subprojectService.getSubprojects(2);
 
-        assertEquals(subprojects,result);
+        assertEquals(subprojects, result);
         verify(projectService).getSubProjectsByProjectId(2);
     }
 
     @Test
-    void getSubproject_returnEmptySubproject(){
+    void getSubproject_returnEmptySubproject() {
         List<Subproject> subprojects = List.of();
         when(projectService.getSubProjectsByProjectId(2)).thenReturn(subprojects);
 
@@ -58,8 +58,8 @@ public class SubprojectServiceTest {
     }
 
     @Test
-    void saveNewSubproject_throwsWhenNameIsBlank(){
-        Subproject subproject = new Subproject(1,2,"  ","Prototyping");
+    void saveNewSubproject_throwsWhenNameIsBlank() {
+        Subproject subproject = new Subproject(1, 2, "  ", "Prototyping");
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
                 () -> subprojectService.saveNewSubproject(2, subproject));
@@ -69,13 +69,45 @@ public class SubprojectServiceTest {
     }
 
     @Test
-    void saveNewSubproject_throwsWhenNameIsNull(){
-        Subproject subproject = new Subproject(1,2,null,"Prototyping");
+    void saveNewSubproject_throwsWhenNameIsNull() {
+        Subproject subproject = new Subproject(1, 2, null, "Prototyping");
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
                 () -> subprojectService.saveNewSubproject(2, subproject));
 
         assertEquals("Name must not be blank", exception.getMessage());
+        verify(subprojectRepository, never()).saveNewSubproject(any());
+    }
+
+    @Test
+    void saveNewSubproject_throwsWhenNameLengthMoreThan100() {
+        Subproject subproject = new Subproject(1, 2, "Development and Implementation of Innovative Digital Technologies to Improve Operational Efficiency and Sustainable Business Growthhfjfkfifuykf",
+                "Prototyping");
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> subprojectService.saveNewSubproject(2, subproject));
+
+        assertEquals("Name must be at most 100 characters", exception.getMessage());
+        verify(subprojectRepository, never()).saveNewSubproject(any());
+    }
+
+    @Test
+    void saveNewSubproject_allowsEmptyDescription() {
+        Subproject subproject = new Subproject(1, 2, "Development", "");
+
+        subprojectService.saveNewSubproject(2, subproject);
+
+        verify(subprojectRepository).saveNewSubproject(subproject);
+    }
+
+    @Test
+    void saveNewSubproject_subProjectDesMoreThan1000(){
+        Subproject subproject = new Subproject(1, 2, "Development","a".repeat(1050));
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+        () -> subprojectService.saveNewSubproject(2,subproject));
+
+        assertEquals("Description must not be more than 1000 characters", exception.getMessage());
         verify(subprojectRepository, never()).saveNewSubproject(any());
     }
 }
