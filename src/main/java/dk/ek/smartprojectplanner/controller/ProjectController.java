@@ -1,11 +1,9 @@
 package dk.ek.smartprojectplanner.controller;
 
-import com.sun.source.tree.TryTree;
 import dk.ek.smartprojectplanner.model.Project;
 import dk.ek.smartprojectplanner.model.Subproject;
 import dk.ek.smartprojectplanner.service.ProjectService;
 import dk.ek.smartprojectplanner.service.SubprojectService;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -66,20 +64,18 @@ public class ProjectController {
     public String createSubproject (@PathVariable int projectId,
                                     @RequestParam String subprojectName,
                                     @RequestParam(required = false) String subprojectDescription,
-                                    Model model){
+                                    Model model) {
 
-            Subproject subproject = new Subproject(0, projectId, subprojectName, subprojectDescription);
-            try {
-                subprojectService.saveNewSubproject(projectId, subproject);
-                return "redirect:/projects/" + projectId + "/subprojects";
-            }catch (IllegalArgumentException exception){
-                model.addAttribute("project", projectService.getSubProjectsByProjectId(projectId));
-                model.addAttribute("error", exception.getMessage());
-            }
-
-
+        Subproject subproject = new Subproject(0, projectId, subprojectName, subprojectDescription);
+        try {
+            subprojectService.saveNewSubproject(projectId, subproject);
+            return "redirect:/projects/" + projectId + "/subprojects";
+        } catch (IllegalArgumentException exception) {
+            model.addAttribute("project", projectService.getProjectById(projectId));
+            model.addAttribute("error", exception.getMessage());
+            return "createSubproject";
+        }
     }
-
     // User story: Delete project
     @PostMapping("/projects/{projectId}/delete")
     public String deleteProject(@PathVariable int projectId) {
