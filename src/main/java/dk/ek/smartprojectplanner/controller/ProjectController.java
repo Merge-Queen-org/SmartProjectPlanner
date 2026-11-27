@@ -1,5 +1,6 @@
 package dk.ek.smartprojectplanner.controller;
 
+import com.sun.source.tree.TryTree;
 import dk.ek.smartprojectplanner.model.Project;
 import dk.ek.smartprojectplanner.model.Subproject;
 import dk.ek.smartprojectplanner.service.ProjectService;
@@ -64,11 +65,19 @@ public class ProjectController {
     @PostMapping("/projects/{projectId}/subprojects/create")
     public String createSubproject (@PathVariable int projectId,
                                     @RequestParam String subprojectName,
-                                    @RequestParam(required = false) String subprojectDescription){
-        Subproject subproject = new Subproject(0, projectId, subprojectName, subprojectDescription);
+                                    @RequestParam(required = false) String subprojectDescription,
+                                    Model model){
 
-        subprojectService.saveNewSubproject(projectId, subproject);
-        return "redirect:/projects/" + projectId + "/subprojects";
+            Subproject subproject = new Subproject(0, projectId, subprojectName, subprojectDescription);
+            try {
+                subprojectService.saveNewSubproject(projectId, subproject);
+                return "redirect:/projects/" + projectId + "/subprojects";
+            }catch (IllegalArgumentException exception){
+                model.addAttribute("project", projectService.getSubProjectsByProjectId(projectId));
+                model.addAttribute("error", exception.getMessage());
+            }
+
+
     }
 
     // User story: Delete project
