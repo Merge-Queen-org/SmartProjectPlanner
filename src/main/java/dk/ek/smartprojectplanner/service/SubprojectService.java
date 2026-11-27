@@ -38,5 +38,4 @@ public class SubprojectService {
             throw new IllegalArgumentException("Description must not be more than 1000 characters");
         }
     }
-
 }

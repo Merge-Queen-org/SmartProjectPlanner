@@ -1,5 +1,6 @@
 package dk.ek.smartprojectplanner.controller;
 
+import dk.ek.smartprojectplanner.model.Project;
 import dk.ek.smartprojectplanner.service.ProjectService;
 import dk.ek.smartprojectplanner.service.SubprojectService;
 import org.junit.jupiter.api.Test;
@@ -9,6 +10,8 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -29,17 +32,24 @@ class ProjectControllerTest {
 
 
     // falsk service
-
-
     @Test
     void deleteProject_redirectsToFrontPage() throws Exception {
 
         // tryk på slet bliver sendt videre til forsiden tjekker om servicen er blevet kaldt
-
         mockMvc.perform(post("/projects/1/delete"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/"));
 
         verify(projectService).deleteProject(1);
     }
-}
+
+
+        //void addNewWish() throws Exception {
+        //        when(wishListService.getWishListById(2)).thenReturn(new WishList());
+        //
+        //        mockMvc.perform(get("/wishlist/2/wish/new"))
+        //                .andExpect(status().isOk())
+        //                        .andExpect(view().name("wish-form"))
+        //                        .andExpect(model().attributeExists("wishList"))
+        //                        .andExpect(model().attributeExists("wish"));
+    }
