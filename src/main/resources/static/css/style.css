@@ -106,27 +106,58 @@ body {
     border: 1px solid #e5e7eb;
     border-radius: 10px;
     padding: 32px;
+}
 
-    .num {
-        display: inline-block;
-        width: 36px;
-        height: 36px;
-        border-radius: 8px;
-        background: #eaf1fb;
-        color: #1d4ed8;
-        text-align: center;
-        line-height: 36px;
-        font-size: 18px;
-    }
+.num {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: #eaf1fb;
+    color: #1d4ed8;
+    text-align: center;
+    line-height: 36px;
+    font-size: 18px;
+}
 
-    .step h3 {
-        margin: 16px 0 8px;
-        font-size: 20px;
-    }
+.step h3 {
+    margin: 16px 0 8px;
+    font-size: 20px;
+}
 
-    .step p {
-        margin: 0;
-        color: #6b7280;
-        font-size: 16px;
-    }
+.step p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 16px;
+}
+
+.card {
+    max-width: 420px;
+    margin: 60px auto;
+    background: white;
+    padding: 28px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+.card label {
+    display: block;
+    margin: 12px 0 4px;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.card input,
+.card textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.card .button {
+    margin-top: 16px;
+    border: none;
+    cursor: pointer;
 }

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create task</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<main class="card">
+    <h2>Create task</h2>
+
+    <form th:action="@{/subprojects/{id}/tasks/create(id=${subprojectId})}" method="post">
+        <label>Name</label>
+        <input name="name" placeholder="e.g. Design the booking page" required>
+
+        <label>Description</label>
+        <textarea name="description" rows="3"></textarea>
+
+        <label>Estimated hours</label>
+        <input type="number" name="hours" min="0" value="0" required>
+
+        <label>Start date</label>
+        <input type="date" name="startDate" required>
+
+        <label>Due date</label>
+        <input type="date" name="dueDate" required>
+
+        <button class="button">Create task</button>
+    </form>
+</main>
+
+</body>
+</html>
