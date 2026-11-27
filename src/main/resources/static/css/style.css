@@ -132,7 +132,7 @@ body {
 }
 
 .card {
-    max-width: 420px;
+    max-width: 480px;
     margin: 60px auto;
     background: white;
     padding: 28px;
@@ -144,7 +144,7 @@ body {
     display: block;
     margin: 12px 0 4px;
     font-weight: 600;
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .card input,
@@ -154,10 +154,33 @@ body {
     border: 1px solid #d1d5db;
     border-radius: 6px;
     box-sizing: border-box;
+    font-family: inherit;
+    font-size: 15px;
 }
 
 .card .button {
     margin-top: 16px;
     border: none;
     cursor: pointer;
+}
+
+.row {
+    display: flex;
+    gap: 16px;
+}
+
+.row div {
+    flex: 1;
+}
+
+.card textarea {
+    resize: vertical;
+}
+
+.card h2 {
+    margin-top: 0;
+}
+
+.card .button {
+    width: 100%;
 }

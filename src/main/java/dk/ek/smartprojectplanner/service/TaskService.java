@@ -18,4 +18,14 @@ public class TaskService {
         // send videre til repository
         taskRepository.createTask(task);
     }
+
+    // henter en task
+    public Task findTaskById(int taskId) {
+        return taskRepository.findTaskById(taskId);
+    }
+
+    // gemmer ændringer
+    public void updateTask(Task task) {
+        taskRepository.updateTask(task);
+    }
 }

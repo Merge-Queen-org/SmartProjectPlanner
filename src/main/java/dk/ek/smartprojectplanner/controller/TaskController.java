@@ -40,4 +40,32 @@ public class TaskController {
         return "redirect:/";
         // tilbage til forsiden
     }
+
+    // viser edit-siden med taskens data
+    @GetMapping("/tasks/{taskId}/edit")
+    public String showEditTask(@PathVariable int taskId, Model model) {
+        model.addAttribute("task", taskService.findTaskById(taskId));
+        return "edit-task";
+    }
+
+    // gemmer ændringerne
+    @PostMapping("/tasks/{taskId}/edit")
+    public String editTask(@PathVariable int taskId, @RequestParam String name,
+                           @RequestParam(required = false) String description, @RequestParam int hours,
+                           @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+                           @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dueDate) {
+        // henter den gamle task
+
+        Task task = taskService.findTaskById(taskId);
+
+
+        task.setTaskName(name);
+        task.setTaskDescription(description);
+        task.setTaskEstimatedHours(hours);
+        task.setTaskStartDate(startDate);
+        task.setTaskDueDate(dueDate);
+        // gemmer den nye ændring
+        taskService.updateTask(task);
+        return "redirect:/";
+    }
 }

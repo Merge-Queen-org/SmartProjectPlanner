@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit task</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<main class="card">
+    <h2>Edit task</h2>
+
+    <form th:action="@{/tasks/{id}/edit(id=${task.taskId})}" method="post">
+        <label>Name</label>
+        <input name="name" th:value="${task.taskName}" required>
+
+        <label>Description</label>
+        <textarea name="description" rows="3" th:text="${task.taskDescription}"></textarea>
+
+        <label>Estimated hours</label>
+        <input type="number" name="hours" min="0" th:value="${task.taskEstimatedHours}" required>
+
+        <!-- datoer side om side -->
+        <div class="row">
+            <div>
+                <label>Start date</label>
+                <input type="date" name="startDate" th:value="${task.taskStartDate}" required>
+            </div>
+            <div>
+                <label>Due date</label>
+                <input type="date" name="dueDate" th:value="${task.taskDueDate}" required>
+            </div>
+        </div>
+
+        <button class="button">Save changes</button>
+    </form>
+</main>
+
+</body>
+</html>
