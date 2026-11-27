@@ -1,6 +1,7 @@
 package dk.ek.smartprojectplanner.controller;
 
 import dk.ek.smartprojectplanner.service.ProjectService;
+import dk.ek.smartprojectplanner.service.SubprojectService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
@@ -22,6 +23,9 @@ class ProjectControllerTest {
 
     @MockitoBean
     private ProjectService projectService;
+
+    @MockitoBean
+    private SubprojectService subprojectService;
 
 
     // falsk service

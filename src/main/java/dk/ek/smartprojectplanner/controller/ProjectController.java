@@ -1,7 +1,9 @@
 package dk.ek.smartprojectplanner.controller;
 
 import dk.ek.smartprojectplanner.model.Project;
+import dk.ek.smartprojectplanner.model.Subproject;
 import dk.ek.smartprojectplanner.service.ProjectService;
+import dk.ek.smartprojectplanner.service.SubprojectService;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
@@ -9,14 +11,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ProjectController {
 
     private final ProjectService projectService;
+    private final SubprojectService subprojectService;
 
-    public ProjectController(ProjectService projectService) { // constructor injection
+    public ProjectController(ProjectService projectService, SubprojectService subprojectService) { // constructor injection
         this.projectService = projectService;
+        this.subprojectService = subprojectService;
     }
 
     @GetMapping("/")
@@ -43,6 +48,29 @@ public class ProjectController {
 
         return "subprojects";
     }
+    @GetMapping("/overview")
+    public String showOverview() {
+        return "overview";
+    }
+
+    @GetMapping("/projects/{projectId}/subprojects/create")
+    public String createSubprojects(@PathVariable int projectId, Model model){
+        Project project = projectService.getProjectById(projectId);
+        if (project == null) return "redirect:/projects";
+        model.addAttribute("project", project);
+        return "createSubproject";
+    }
+
+    @PostMapping("/projects/{projectId}/subprojects/create")
+    public String createSubproject (@PathVariable int projectId,
+                                    @RequestParam String subprojectName,
+                                    @RequestParam(required = false) String subprojectDescription){
+        Subproject subproject = new Subproject(0, projectId, subprojectName, subprojectDescription);
+
+        subprojectService.saveNewSubproject(projectId, subproject);
+        return "redirect:/projects/" + projectId + "/subprojects";
+    }
+
     // User story: Delete project
     @PostMapping("/projects/{projectId}/delete")
     public String deleteProject(@PathVariable int projectId) {
