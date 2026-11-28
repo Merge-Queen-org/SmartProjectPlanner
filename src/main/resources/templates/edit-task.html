@@ -20,7 +20,7 @@
         <label>Estimated hours</label>
         <input type="number" name="hours" min="0" th:value="${task.taskEstimatedHours}" required>
 
-        <!-- datoer side om side -->
+
         <div class="row">
             <div>
                 <label>Start date</label>
@@ -35,7 +35,7 @@
         <button class="button">Save changes</button>
     </form>
 
-    <!-- ny subtask -->
+
     <h3>Add subtask</h3>
     <form th:action="@{/tasks/{id}/subtasks/create(id=${task.taskId})}" method="post">
         <input name="subtaskName" placeholder="e.g. Make mobile version" required>
