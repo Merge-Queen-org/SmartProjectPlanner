@@ -6,6 +6,8 @@ import dk.ek.smartprojectplanner.rowMapper.TaskRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class TaskRepository {
 
@@ -28,6 +30,7 @@ public class TaskRepository {
                 task.getTaskStartDate(),
                 task.getTaskDueDate());
     }
+
     // henter en task ud fra id
     public Task findTaskById(int taskId) {
         String sql = "SELECT * FROM task WHERE task_id = ?";
@@ -41,9 +44,16 @@ public class TaskRepository {
         jdbcTemplate.update(sql, task.getTaskName(), task.getTaskDescription(), task.getTaskEstimatedHours(),
                 task.getTaskStartDate(), task.getTaskDueDate(), task.getTaskId());
     }
+
     // gemmer en ny subtask under en task
     public void createSubtask(Subtask subtask) {
         String sql = "INSERT INTO subtask (task_id, subtask_name) VALUES (?, ?)";
         jdbcTemplate.update(sql, subtask.getTaskId(), subtask.getSubtaskName());
+    }
+
+    // henter alle tasks for et subprojekt
+    public List<Task> findTasksBySubprojectId(int subprojectId) {
+        String sql = "SELECT * FROM task WHERE subproject_id = ?";
+        return jdbcTemplate.query(sql, new TaskRowMapper(), subprojectId);
     }
 }

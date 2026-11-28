@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Tasks</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<!-- header fra fragments -->
+<div th:replace="~{fragments :: header}"></div>
+
+<main class="card">
+  <h2>Tasks</h2>
+
+  <!-- hvis der ingen tasks er -->
+  <p th:if="${#lists.isEmpty(tasks)}">No tasks yet.</p>
+
+  <!-- liste med tasks, klik for at redigere -->
+  <ul class="task-list">
+    <li th:each="task : ${tasks}">
+      <a th:href="@{/tasks/{id}/edit(id=${task.taskId})}" th:text="${task.taskName}">Task</a>
+      <span th:text="${task.taskEstimatedHours} + ' h'">0 h</span>
+    </li>
+  </ul>
+
+  <!-- ny task til samme subprojekt -->
+  <a th:href="@{/subprojects/{id}/tasks/create(id=${subprojectId})}" class="button">+ Add task</a>
+</main>
+
+</body>
+</html>

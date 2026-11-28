@@ -30,13 +30,13 @@ class ProjectControllerTest {
 
 
     @Test
-    void deleteProject_redirectsToFrontPage() throws Exception {
+    void deleteProject_redirectsToProjects() throws Exception {
 
-        // tryk på slet bliver sendt videre til forsiden tjekker om servicen er blevet kaldt
+        // tryk på slet sender videre til projektlisten og tjekker at servicen bliver kaldt
 
         mockMvc.perform(post("/projects/1/delete"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/"));
+                .andExpect(redirectedUrl("/projects"));
 
         verify(projectService).deleteProject(1);
     }
