@@ -16,6 +16,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.mockito.Mockito.doThrow;
 
 // starter kun controlleren
 
@@ -68,8 +69,19 @@ class ProjectControllerTest {
     }
 
     @Test
+    void createSubprojects_redirectsWhenProjectNotFound() throws Exception {
+    when(projectService.getProjectById(99)).thenReturn(null);
+        mockMvc.perform(get("/projects/99/subprojects/create")
+                        .param("subprojectName", "Kwan")
+                        .param("subprojectDescription", "hckjsgfhw"))
+
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/projects"));
+    }
+
+    @Test
     void createSubproject_exceptionHandler() throws Exception {
-            doThrow(new IllegalAccessException("Name is required"))
+            doThrow(new IllegalArgumentException("Name must not be blank"))
                     .when(subprojectService).saveNewSubproject(eq(2), any(Subproject.class));
         when(projectService.getProjectById(2)).thenReturn(new Project());
 
@@ -79,7 +91,7 @@ class ProjectControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("createSubproject"))
                 .andExpect(model().attributeExists("project"))
-                .andExpect(model().attribute("error", "Name is required"));
+                .andExpect(model().attribute("error", "Name must not be blank"));
 
     }
 }
