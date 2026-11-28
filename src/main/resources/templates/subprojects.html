@@ -13,19 +13,7 @@
 
 <body>
 
-<header class="site-header">
-    <div class="container">
-        <a href="/" class="logo">
-            <span class="dot">S</span>
-            Smart Project Planner
-        </a>
-
-        <nav class="main-nav">
-            <a href="/projects" class="active">Projects</a>
-            <a href="/">Home</a>
-        </nav>
-    </div>
-</header>
+<header th:replace="~{fragments :: header}"></header>
 
 <main>
 <div>
@@ -46,6 +34,8 @@
         button "Add subproject"
     </div>
 </main>
+
+<footer th:replace="~{fragments :: footer}"></footer>
 
 </body>
 </html>
