@@ -98,6 +98,4 @@ public class ProjectController {
         projectService.editProject(id, project);
         return "redirect:/projects";
     }
-
-
 }
