@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class TaskRowMapper implements RowMapper<Task> {
 
@@ -18,8 +19,8 @@ public class TaskRowMapper implements RowMapper<Task> {
                 rs.getString("task_name"),
                 rs.getString("task_description"),
                 rs.getInt("task_estimated_hours"),
-                rs.getDate("task_start_date").toLocalDate(),
-                rs.getDate("task_due_date").toLocalDate()
+                rs.getObject("task_start_date", LocalDate.class),
+                rs.getObject("task_due_date", LocalDate.class)
         );
     }
 }

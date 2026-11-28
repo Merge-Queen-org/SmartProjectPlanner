@@ -15,7 +15,7 @@ public class ProjectController {
     private final ProjectService projectService;
     private final SubprojectService subProjectService;
 
-    public ProjectController(ProjectService projectService,SubprojectService subprojectService) { // constructor injection
+    public ProjectController(ProjectService projectService, SubprojectService subprojectService) { // constructor injection
         this.projectService = projectService;
         this.subProjectService = subprojectService;
     }
@@ -49,11 +49,19 @@ public class ProjectController {
 
         return "seeAllSubprojects";
     }
+
+    // viser "er du sikker?" siden
+    @GetMapping("/projects/{projectId}/delete")
+    public String showDeleteProject(@PathVariable int projectId, Model model) {
+        model.addAttribute("project", projectService.getProjectById(projectId));
+        return "delete-project";
+    }
+
     // User story: Delete project
     @PostMapping("/projects/{projectId}/delete")
     public String deleteProject(@PathVariable int projectId) {
         projectService.deleteProject(projectId);
-        return "redirect:/";
+        return "redirect:/projects";
     }
 
     // User story: Edit project
@@ -71,20 +79,21 @@ public class ProjectController {
         projectService.editProject(id, project);
         return "redirect:/projects";
     }
+
     @GetMapping("/overview")
     public String showOverview() {
         return "overview";
     }
 
     @GetMapping("/projects/{projectId}/subprojects/create")
-    public String createSubprojects(@PathVariable int projectId, Model model){
+    public String createSubprojects(@PathVariable int projectId, Model model) {
         model.addAttribute("subprojects", projectId);
         return "createSubproject";
     }
 
     @PostMapping("/projects/{projectId}/subprojects/create")
-    public String createSubproject (@PathVariable int projectId, @RequestParam String subprojectName,
-                                    @RequestParam(required = false)String subprojectDescription){
+    public String createSubproject(@PathVariable int projectId, @RequestParam String subprojectName,
+                                   @RequestParam(required = false) String subprojectDescription) {
         Subproject subproject = new Subproject(0, projectId, subprojectName, subprojectDescription);
         subProjectService.saveNewSubproject(projectId, subproject);
         return "redirect:/projects/" + projectId + "/subprojects";

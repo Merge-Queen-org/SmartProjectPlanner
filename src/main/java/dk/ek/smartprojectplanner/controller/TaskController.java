@@ -38,7 +38,7 @@ public class TaskController {
         // ny opgave
         taskService.createTask(task);
         // gem
-        return "redirect:/";
+        return "redirect:/projects";
         // tilbage til forsiden
     }
 
@@ -68,7 +68,7 @@ public class TaskController {
         task.setTaskDueDate(dueDate);
         // gemmer den nye ændring
         taskService.updateTask(task);
-        return "redirect:/";
+        return "redirect:/projects";
     }
 
     // gemmer en ny subtask og går tilbage til edit-siden
@@ -78,5 +78,13 @@ public class TaskController {
         // ny subtask, ikke færdig
         taskService.createSubtask(subtask);
         return "redirect:/tasks/" + taskId + "/edit";
+    }
+
+    // viser alle tasks for et subprojekt
+    @GetMapping("/subprojects/{subprojectId}/tasks")
+    public String showTasks(@PathVariable int subprojectId, Model model) {
+        model.addAttribute("tasks", taskService.findTasksBySubprojectId(subprojectId));
+        model.addAttribute("subprojectId", subprojectId);
+        return "tasks";
     }
 }

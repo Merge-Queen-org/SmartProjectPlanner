@@ -132,7 +132,7 @@
 
                 <!-- Delete button -->
                 <form th:action="@{/projects/{projectId}/delete(projectId=${summary.project.projectId})}"
-                      method="post">
+                      method="get">
                     <button type="submit">Delete</button>
                 </form>
 
